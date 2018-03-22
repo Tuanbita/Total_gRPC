@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+message UserRequest {
+    int64 uid = 1;
+}
+message UserResponse {
+    string name   = 1;
+    uint32 age    = 2;
+
+    uint32 gender = 3;
+}
+message UserCondition {
+    uint32 gender = 1;
+}
+
+message UserSummary {
+    string description = 1;
+    uint32 total       = 2;
+}
+message UserMessage {
+    int32 dem =1;
+    string talk = 2;
+}
+
+service User {
+//
+    rpc QueryUser(UserRequest) returns (UserResponse) {}
+//gui 1 chuoi request, tra ve stream
+    rpc ListUser(UserCondition) returns (stream UserResponse) {}
+
+//nhan 1 chuoi stream,
+    rpc SendUser(stream UserRequest) returns (UserSummary) {}
+
+    rpc Chat(stream UserMessage) returns (stream UserMessage) {}
+}
