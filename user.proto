@@ -25,10 +25,9 @@ message UserMessage {
 service User {
 //
     rpc QueryUser(UserRequest) returns (UserResponse) {}
-//gui 1 chuoi request, tra ve stream
+
     rpc ListUser(UserCondition) returns (stream UserResponse) {}
 
-//nhan 1 chuoi stream,
     rpc SendUser(stream UserRequest) returns (UserSummary) {}
 
     rpc Chat(stream UserMessage) returns (stream UserMessage) {}
